@@ -1,18 +1,19 @@
 package com.nvt.media_backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "roles")
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Roles {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,4 +35,7 @@ public class Roles {
     @Column(name = "create_date")
     private Date createDate;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "role")
+    List<RoleUser> roleUserEntityList;
 }

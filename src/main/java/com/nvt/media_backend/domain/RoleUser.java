@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "role_user")
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,12 +16,11 @@ public class RoleUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+    @ManyToOne @JoinColumn(name = "role_id")
+    Role role;
 
-    @Column(name = "role_id")
-    private Long roleId;
-
-    @Column(name = "user_id")
-    private Long userId;
+    @ManyToOne @JoinColumn(name = "user_id")
+    User user;
 
     @Column(name = "status")
     private Long status;
