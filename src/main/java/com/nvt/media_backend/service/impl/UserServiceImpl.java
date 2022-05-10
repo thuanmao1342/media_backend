@@ -5,6 +5,7 @@ import com.nvt.media_backend.domain.User;
 import com.nvt.media_backend.repository.RoleRepository;
 import com.nvt.media_backend.repository.UserRepository;
 import com.nvt.media_backend.service.UserService;
+import com.nvt.media_backend.service.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -25,6 +26,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
+
+    private final UserMapper userMapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
