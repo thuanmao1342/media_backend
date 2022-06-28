@@ -3,11 +3,13 @@ package com.nvt.media_backend.rest;
 import com.nvt.media_backend.domain.Role;
 import com.nvt.media_backend.domain.User;
 import com.nvt.media_backend.domain.obj.MailSender;
+import com.nvt.media_backend.dto.RoleDto;
 import com.nvt.media_backend.dto.UserDto;
 import com.nvt.media_backend.repository.RoleUserRepository;
 import com.nvt.media_backend.repository.RoleRepository;
 import com.nvt.media_backend.repository.UserRepository;
 import com.nvt.media_backend.service.EmailUtil;
+import com.nvt.media_backend.service.mapper.RoleMapper;
 import com.nvt.media_backend.service.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ public class Demo {
     private final RoleRepository rolesRepository;
     private final RoleUserRepository roleUserRepository;
     private final UserMapper userMapper;
+
+    private final RoleMapper roleMapper;
     private final EmailUtil emailUtil;
 
 
@@ -35,6 +39,10 @@ public class Demo {
         System.out.println(usersRepository.findByUserName("admin"));
 
         return userMapper.userToUserDto(usersRepository.findByUserName("admin"));
+    }
+    @GetMapping("/b")
+    public RoleDto getRole(){
+        return roleMapper.roleToRoeDto(rolesRepository.getById(1l));
     }
     @GetMapping("/a")
     public void sendmail() throws MessagingException {
